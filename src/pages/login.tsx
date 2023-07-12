@@ -1,16 +1,15 @@
-import { useLogin } from "@refinedev/core";
-import { useEffect, useRef } from "react";
+import { useLogin } from '@refinedev/core';
+import { useEffect, useRef } from 'react';
 
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import { ThemedTitleV2 } from "@refinedev/mui";
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Container from '@mui/material/Container';
 
-import { CredentialResponse } from "../interfaces/google";
+import { CredentialResponse } from '../interfaces/google';
+import { AppIcon } from '../components/app-icon';
+import { Typography } from '@mui/material';
 
-// Todo: Update your Google Client ID here
-const GOOGLE_CLIENT_ID =
-  "1041339102270-e1fpe2b6v6u1didfndh7jkjmpcashs4f.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 export const Login: React.FC = () => {
   const { mutate: login } = useLogin<CredentialResponse>();
@@ -19,13 +18,13 @@ export const Login: React.FC = () => {
     const divRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-      if (typeof window === "undefined" || !window.google || !divRef.current) {
+      if (typeof window === 'undefined' || !window.google || !divRef.current) {
         return;
       }
 
       try {
         window.google.accounts.id.initialize({
-          ux_mode: "popup",
+          ux_mode: 'popup',
           client_id: GOOGLE_CLIENT_ID,
           callback: async (res: CredentialResponse) => {
             if (res.credential) {
@@ -34,9 +33,10 @@ export const Login: React.FC = () => {
           },
         });
         window.google.accounts.id.renderButton(divRef.current, {
-          theme: "filled_blue",
-          size: "medium",
-          type: "standard",
+          theme: 'filled_black',
+          size: 'medium',
+          shape: 'pill',
+          type: 'standard',
         });
       } catch (error) {
         console.log(error);
@@ -49,38 +49,24 @@ export const Login: React.FC = () => {
   return (
     <Container
       style={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
-      <Box
-        display="flex"
-        gap="36px"
-        justifyContent="center"
-        flexDirection="column"
-      >
-        <ThemedTitleV2
-          collapsed={false}
-          wrapperStyles={{
-            fontSize: "22px",
-            justifyContent: "center",
-          }}
-        />
-
-        <GoogleButton />
-
-        <Typography align="center" color={"text.secondary"} fontSize="12px">
-          Powered by
-          <img
-            style={{ padding: "0 5px" }}
-            alt="Google"
-            src="https://refine.ams3.cdn.digitaloceanspaces.com/superplate-auth-icons%2Fgoogle.svg"
-          />
-          Google
-        </Typography>
-      </Box>
+      <Stack sx={{ textAlign: 'center' }} spacing={2}>
+        <AppIcon />
+        <Typography variant="h5">Dashboard</Typography>
+        <Box
+          display="flex"
+          gap="36px"
+          justifyContent="center"
+          flexDirection="column"
+        >
+          <GoogleButton />
+        </Box>
+      </Stack>
     </Container>
   );
 };

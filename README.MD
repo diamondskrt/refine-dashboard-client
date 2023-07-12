@@ -1,11 +1,9 @@
-# refine-dashboard
+# Full Stack MERN Dashboard - Client App
 
-<div align="center" style="margin: 30px;">
-    <a href="https://refine.dev">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/refine_logo.png"  align="center" />
-    </a>
-</div>
-<br/>
+![app_cover](https://user-images.githubusercontent.com/18739364/218060209-b0119d40-5c9c-48d0-b96b-ec802816ab50.png)
+
+// @todo
+description...
 
 This [refine](https://github.com/refinedev/refine) project was generated with [superplate](https://github.com/pankod/superplate).
 
@@ -20,30 +18,20 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 ### Running the development server.
 
 ```bash
-    npm run dev
+npm run dev
 ```
 
 ### Building for production.
 
 ```bash
-    npm run build
+npm run build
 ```
 
 ### Running the production server.
 
 ```bash
-    npm run start
+npm run start
 ```
-
-## Learn More
-
-To learn more about **refine**, please check out the [Documentation](https://refine.dev/docs)
-
-- **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
-- **Material UI** [Docs](https://refine.dev/docs/ui-frameworks/mui/tutorial/)
-- **Inferencer** [Docs](https://refine.dev/docs/packages/documentation/inferencer)
-- **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
-- **Google Auth Provider** [Docs](https://refine.dev/docs/core/providers/auth-provider/)
 
 ## License
 
