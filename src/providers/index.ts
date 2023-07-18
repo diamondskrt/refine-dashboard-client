@@ -1,1 +1,2 @@
-export { authProvider } from './auth-provider';
+export { authProvider } from './auth';
+export { ColorModeContextProvider } from './colormode-context';

@@ -1,9 +1,9 @@
-import React from "react";
-import { ThemedLayoutContextProvider } from "@refinedev/mui";
-import { ThemedHeaderV2 as DefaultHeader } from "./header";
-import { ThemedSiderV2 as DefaultSider } from "./sider";
-import Box from "@mui/material/Box";
-import type { RefineThemedLayoutV2Props } from "@refinedev/mui";
+import React from 'react';
+import { ThemedLayoutContextProvider } from '@refinedev/mui';
+import { ThemedHeaderV2 as DefaultHeader } from './header';
+import { ThemedSiderV2 as DefaultSider } from './sider';
+import Box from '@mui/material/Box';
+import type { RefineThemedLayoutV2Props } from '@refinedev/mui';
 
 export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
   Sider,
@@ -24,13 +24,13 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
         <Box
           sx={[
             {
-              display: "flex",
-              flexDirection: "column",
+              display: 'flex',
+              flexDirection: 'column',
               flex: 1,
-              minHeight: "100vh",
+              minHeight: '100vh',
             },
-            { overflow: "auto" },
-            { overflow: "clip" },
+            { overflow: 'auto' },
+            { overflow: 'clip' },
           ]}
         >
           <HeaderToRender />
@@ -39,7 +39,7 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
             sx={{
               p: { xs: 1, md: 2, lg: 3 },
               flexGrow: 1,
-              bgcolor: (theme) => theme.palette.background.default,
+              backgroundColor: 'background.default',
             }}
           >
             {children}

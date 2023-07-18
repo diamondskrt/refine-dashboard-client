@@ -1,13 +1,8 @@
-import { useLogin } from '@refinedev/core';
 import { useEffect, useRef } from 'react';
-
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Container from '@mui/material/Container';
-
-import { CredentialResponse } from '../interfaces/google';
-import { AppIcon } from '../components/app-icon';
-import { Typography } from '@mui/material';
+import { Box, Stack, Typography, Container } from '@mui/material';
+import { useLogin } from '@refinedev/core';
+import { AppIcon } from '@/components';
+import { CredentialResponse } from '@/interfaces/google';
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 

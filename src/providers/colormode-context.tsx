@@ -1,5 +1,8 @@
-import { ThemeProvider } from '@mui/material/styles';
-import { RefineThemes } from '@refinedev/mui';
+import {
+  createTheme,
+  responsiveFontSizes,
+  ThemeProvider,
+} from '@mui/material/styles';
 import React, {
   PropsWithChildren,
   createContext,
@@ -29,15 +32,41 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
     colorModeFromLocalStorage || systemPreference
   );
 
-  const overridedBlueDarkTheme = {
-    ...RefineThemes.BlueDark,
-    palette: {
-      ...RefineThemes.BlueDark.palette,
-      primary: {
-        main: '#1976D2',
-      },
+  const typography = {
+    fontFamily: ['Manrope', 'sans-serif'].join(','),
+    body1: {
+      lineHeight: 1,
     },
   };
+
+  const darkTheme = responsiveFontSizes(
+    createTheme({
+      palette: {
+        primary: {
+          main: '#1E88E5',
+        },
+        secondary: {
+          main: '#9c27b0',
+        },
+        mode: 'dark',
+      },
+      typography,
+    })
+  );
+
+  const lightTheme = responsiveFontSizes(
+    createTheme({
+      palette: {
+        primary: {
+          main: '#1E88E5',
+        },
+        secondary: {
+          main: '#9c27b0',
+        },
+      },
+      typography,
+    })
+  );
 
   useEffect(() => {
     window.localStorage.setItem('colorMode', mode);
@@ -58,10 +87,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
         mode,
       }}
     >
-      <ThemeProvider
-        // you can change the theme colors here. example: mode === "light" ? RefineThemes.Magenta : RefineThemes.MagentaDark
-        theme={mode === 'light' ? RefineThemes.Blue : overridedBlueDarkTheme}
-      >
+      <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
         {children}
       </ThemeProvider>
     </ColorModeContext.Provider>

@@ -1,6 +1,6 @@
 import { ApexOptions } from 'apexcharts';
 
-export const TotalRevenueSeries = [
+export const totalRevenueSeries = [
   {
     name: 'Last Month',
     data: [183, 124, 115, 85, 143, 143, 96],
@@ -11,7 +11,7 @@ export const TotalRevenueSeries = [
   },
 ];
 
-export const TotalRevenueOptions: ApexOptions = {
+export const totalRevenueOptions: ApexOptions = {
   chart: {
     type: 'bar',
     toolbar: {
@@ -39,11 +39,6 @@ export const TotalRevenueOptions: ApexOptions = {
   xaxis: {
     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
   },
-  yaxis: {
-    title: {
-      text: '$ (thousands)',
-    },
-  },
   fill: {
     opacity: 1,
   },
@@ -59,3 +54,31 @@ export const TotalRevenueOptions: ApexOptions = {
     },
   },
 };
+
+export const propertyReferralsInfo = [
+  {
+    title: 'Social Media',
+    percentage: 64,
+    color: '#6C5DD3',
+  },
+  {
+    title: 'Marketplace',
+    percentage: 40,
+    color: '#7FBA7A',
+  },
+  {
+    title: 'Websites',
+    percentage: 50,
+    color: '#FFCE73',
+  },
+  {
+    title: 'Digital Ads',
+    percentage: 80,
+    color: '#FFA2C0',
+  },
+  {
+    title: 'Others',
+    percentage: 15,
+    color: '#F45252',
+  },
+];

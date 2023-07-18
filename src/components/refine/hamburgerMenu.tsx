@@ -1,11 +1,11 @@
-import React from "react";
-import { useThemedLayoutContext } from "@refinedev/mui";
-import Menu from "@mui/icons-material/Menu";
-import IconButton from "@mui/material/IconButton";
-import type { ExtendButtonBase } from "@mui/material/ButtonBase";
-import type { IconButtonTypeMap } from "@mui/material/IconButton";
+import React from 'react';
+import { useThemedLayoutContext } from '@refinedev/mui';
+import { Menu } from '@mui/icons-material';
+import IconButton from '@mui/material/IconButton';
+import type { ExtendButtonBase } from '@mui/material/ButtonBase';
+import type { IconButtonTypeMap } from '@mui/material/IconButton';
 
-const HamburgerIcon: ExtendButtonBase<IconButtonTypeMap<{}, "button">> = (
+const HamburgerIcon: ExtendButtonBase<IconButtonTypeMap<{}, 'button'>> = (
   props: React.PropsWithChildren
 ) => (
   <IconButton color="inherit" aria-label="open drawer" edge="start" {...props}>
@@ -27,16 +27,16 @@ export const HamburgerMenu: React.FC = () => {
         onClick={() => setSiderCollapsed(!siderCollapsed)}
         sx={{
           mr: 2,
-          display: { xs: "none", md: "flex" },
-          ...(!siderCollapsed && { display: "none" }),
+          display: { xs: 'none', md: 'flex' },
+          ...(!siderCollapsed && { display: 'none' }),
         }}
       />
       <HamburgerIcon
         onClick={() => setMobileSiderOpen(!mobileSiderOpen)}
         sx={{
           mr: 2,
-          display: { xs: "flex", md: "none" },
-          ...(mobileSiderOpen && { display: "none" }),
+          display: { xs: 'flex', md: 'none' },
+          ...(mobileSiderOpen && { display: 'none' }),
         }}
       />
     </>
