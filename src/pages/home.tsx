@@ -1,5 +1,5 @@
-import { useList } from '@refinedev/core/dist/hooks';
-import { Box, Grid, Stack, Typography } from '@mui/material';
+import { useList } from "@refinedev/core";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import {
   purple,
   pink,
@@ -7,17 +7,32 @@ import {
   cyan,
   deepOrange,
   blueGrey,
-} from '@mui/material/colors';
-
+} from "@mui/material/colors";
 import {
   PieChart,
+  PropertyCard,
   PropertyReferrals,
   TotalRevenue,
-  PropertyCard,
-  TopAgent,
-} from '@/components';
+} from "@/components";
 
 export const Home: React.FC = () => {
+  const {
+    data: latestProperties,
+    isLoading,
+    isError,
+  } = useList({
+    resource: "properties",
+    config: {
+      pagination: {
+        pageSize: 4,
+      },
+    },
+  });
+
+  if (isLoading) return <Typography>Loading...</Typography>;
+
+  if (isError) return <Typography>Something went wrong...</Typography>;
+
   return (
     <Box>
       <Typography variant="h4" mb={3}>
@@ -68,6 +83,26 @@ export const Home: React.FC = () => {
             <PropertyReferrals />
           </Grid>
         </Grid>
+
+        {latestProperties?.data && latestProperties.data.length ? (
+          <Stack gap={2}>
+            <Typography variant="body1">Last Properties</Typography>
+            <Grid container spacing={2}>
+              {latestProperties.data.map((property) => (
+                <Grid key={property._id} item xs={12} md={6} lg={4} xl={3}>
+                  <PropertyCard
+                    id={property._id}
+                    title={property.title}
+                    type={property.type}
+                    price={property.price}
+                    location={property.location}
+                    photo={property.photo}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Stack>
+        ) : null}
       </Stack>
     </Box>
   );

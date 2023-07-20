@@ -1,13 +1,10 @@
 import { useState } from "react";
-import { useGetIdentity } from "@refinedev/core";
-import { useForm } from "@refinedev/core";
+import { FieldValues } from "react-hook-form";
+import { useGetIdentity, useForm } from "@refinedev/core";
 import { Form } from "@/components";
-import {
-  FormTypes,
-  FormValues,
-  PropertyImg,
-} from "@/components/common/form/types";
+import { FormTypes } from "@/components/common/form/types";
 import { IUser } from "@/interfaces/user";
+import { PropertyImg } from "@/interfaces/common";
 
 export const PropertyCreate = () => {
   const { data: user } = useGetIdentity<IUser>();
@@ -17,9 +14,7 @@ export const PropertyCreate = () => {
     url: "",
   });
 
-  const { onFinish, formLoading } = useForm({
-    action: "create",
-  });
+  const { onFinish, formLoading } = useForm();
 
   const onImageChange = (file: File | undefined) => {
     if (!file) return;
@@ -36,7 +31,7 @@ export const PropertyCreate = () => {
     );
   };
 
-  const onFinishHandler = async (data: FormValues) => {
+  const onFinishHandler = async (data: FieldValues) => {
     if (!propertyImg.name) return;
 
     await onFinish({ ...data, photoUrl: propertyImg.url, email: user?.email });

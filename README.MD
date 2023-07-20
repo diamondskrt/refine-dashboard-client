@@ -1,9 +1,16 @@
-# Full Stack MERN Dashboard - Client App
+# Refine-dashboard - Client App
 
-![app_cover](https://user-images.githubusercontent.com/18739364/218060209-b0119d40-5c9c-48d0-b96b-ec802816ab50.png)
+Stack: Refine, Vite, React 18, Material Ui, Typescript, Apexcharts, React-Hooks, React-hook-form, React-router
 
-// @todo
-description...
+See demo here: [https://refine-dashboard-client.onrender.com/](https://refine-dashboard-client.onrender.com/)
+
+![refine_dashboard](https://github.com/diamondskrt/refine-dashboard-client/blob/main/src/assets/img/refine-dashboard.png?raw=true)
+
+## Full Stack MERN Application
+
+Реализована аутентификация через Google Auth Provider, CRUD (создание, чтение, редактирование, удаление) операции. Для отображения графиков использовалась библиотека Apexcharts. Все данные хранятся в Atlas (Multi-Cloud Database Service, MongoDB), для хранения файлов используется Cloudinary.
+
+[Ссылка на код серверного приложения](https://github.com/diamondskrt/refine-dashboard-server)
 
 This [refine](https://github.com/refinedev/refine) project was generated with [superplate](https://github.com/pankod/superplate).
 

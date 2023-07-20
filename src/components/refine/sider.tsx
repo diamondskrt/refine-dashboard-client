@@ -48,6 +48,7 @@ import Avatar from "@mui/material/Avatar";
 import { AppIcon } from "@/components";
 import { ColorModeContext } from "@/providers/colormode-context";
 import { IUser } from "@/interfaces/user";
+import { useNavigate } from "react-router-dom";
 
 export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   Title: TitleFromProps,
@@ -67,6 +68,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     return 240;
   };
 
+  const authProvider = useActiveAuthProvider();
+  const { data: user } = useGetIdentity<IUser>();
   const t = useTranslate();
   const routerType = useRouterType();
   const Link = useLink();
@@ -78,7 +81,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
   const isExistAuthentication = useIsExistAuthentication();
   const TitleFromContext = useTitle();
-  const authProvider = useActiveAuthProvider();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
   const { mutate: mutateLogout } = useLogout({
     v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
@@ -86,7 +88,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
 
   const [open, setOpen] = useState<{ [k: string]: any }>({});
   const { mode, setMode } = useContext(ColorModeContext);
-  const { data: user } = useGetIdentity<IUser>();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     setOpen((previous) => {
@@ -106,6 +108,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
 
   const handleClick = (key: string) => {
     setOpen({ ...open, [key]: !open[key] });
+  };
+
+  const goHome = () => {
+    setMobileSiderOpen(false);
+    navigate("/");
   };
 
   const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
@@ -434,6 +441,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 paddingLeft: "16px",
                 fontSize: "14px",
               }}
+              onClick={goHome}
             >
               <RenderToTitle collapsed={false} />
             </Box>
@@ -471,7 +479,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
               borderRadius: 0,
             }}
           >
-            <RenderToTitle collapsed={siderCollapsed} />
+            <Link to="/">
+              <RenderToTitle collapsed={siderCollapsed} />
+            </Link>
           </Paper>
           <Box
             sx={{

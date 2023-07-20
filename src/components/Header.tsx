@@ -1,15 +1,17 @@
-import React, { useContext } from 'react';
-import { DarkModeOutlined, LightModeOutlined } from '@mui/icons-material';
-import AppBar from '@mui/material/AppBar';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Stack from '@mui/material/Stack';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import { useGetIdentity } from '@refinedev/core';
-import { HamburgerMenu, RefineThemedLayoutV2HeaderProps } from '@refinedev/mui';
-import { ColorModeContext } from '@/providers/colormode-context';
-import { IUser } from '@/interfaces/user';
+import React, { useContext } from "react";
+import { useGetIdentity } from "@refinedev/core";
+import { HamburgerMenu, RefineThemedLayoutV2HeaderProps } from "@refinedev/mui";
+import {
+  AppBar,
+  Avatar,
+  IconButton,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
+import { IUser } from "@/interfaces/user";
+import { ColorModeContext } from "@/providers/colormode-context";
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   sticky = true,
@@ -20,11 +22,11 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
 
   return (
     <AppBar
-      position={sticky ? 'sticky' : 'relative'}
+      position={sticky ? "sticky" : "relative"}
       sx={{
-        backgroundImage: 'none',
+        backgroundImage: "none",
         display: {
-          md: 'none',
+          md: "none",
         },
       }}
     >
@@ -49,7 +51,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                 setMode();
               }}
             >
-              {mode === 'dark' ? <LightModeOutlined /> : <DarkModeOutlined />}
+              {mode === "dark" ? <LightModeOutlined /> : <DarkModeOutlined />}
             </IconButton>
 
             {(user?.avatar || user?.name) && (
@@ -63,8 +65,8 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                   <Typography
                     sx={{
                       display: {
-                        xs: 'none',
-                        sm: 'inline-block',
+                        xs: "none",
+                        sm: "inline-block",
                       },
                     }}
                     variant="subtitle2"

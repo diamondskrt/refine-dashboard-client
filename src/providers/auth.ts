@@ -7,7 +7,6 @@ import { CredentialResponse } from "@/interfaces/google";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
-  timeout: 1000,
 });
 
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {

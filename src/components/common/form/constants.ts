@@ -1,4 +1,4 @@
-import { PropertyTypeValues } from "./types";
+import { PropertyTypeValues } from "@/interfaces/common";
 
 export const propertyTypes = [
   {

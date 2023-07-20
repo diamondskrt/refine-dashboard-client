@@ -4,8 +4,6 @@ import {
   notificationProvider,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
-import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
 import dataProvider from "@refinedev/simple-rest";
 import { Authenticated, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
@@ -15,6 +13,8 @@ import routerBindings, {
   NavigateToResource,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
 import {
   GridViewRounded,
   TextsmsOutlined,
@@ -22,24 +22,23 @@ import {
   StarHalfOutlined,
   SettingsOutlined,
 } from "@mui/icons-material";
-import { Header } from "@/components";
-import { ThemedLayoutV2 } from "@/components/refine";
-import { ThemedSiderV2 } from "@/components/refine/sider";
-import { ColorModeContextProvider } from "@/providers/colormode-context";
-import { Login } from "@/pages/login";
-import { Home } from "@/pages/home";
-import { authProvider } from "@/providers";
+import { ThemedLayoutV2 } from "@/components/refine/layout";
+import { authProvider, ColorModeContextProvider } from "@/providers";
 import {
   PropertyList,
   PropertyShow,
   PropertyCreate,
   PropertyEdit,
 } from "@/pages/properties";
+import { AgentList, AgentProfile, AgentShow } from "@/pages/agents";
+import { Home } from "@/pages/home";
+import { Login } from "@/pages/login";
 
 function App() {
   const menuItems = [
     {
       name: "",
+      list: Home,
       options: {
         label: "Dashboard",
       },
@@ -49,10 +48,14 @@ function App() {
       name: "properties",
       list: PropertyList,
       create: PropertyCreate,
+      show: PropertyShow,
+      edit: PropertyEdit,
       icon: <SettingsOutlined />,
     },
     {
-      name: "agent",
+      name: "agents",
+      list: AgentList,
+      show: AgentShow,
       icon: <PeopleAltOutlined />,
     },
     {
@@ -87,10 +90,7 @@ function App() {
                 <Route
                   element={
                     <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                      <ThemedLayoutV2
-                        Header={() => <Header sticky />}
-                        Sider={() => <ThemedSiderV2 />}
-                      >
+                      <ThemedLayoutV2>
                         <Outlet />
                       </ThemedLayoutV2>
                     </Authenticated>
@@ -102,6 +102,11 @@ function App() {
                     <Route path="create" element={<PropertyCreate />} />
                     <Route path="edit/:id" element={<PropertyEdit />} />
                     <Route path="show/:id" element={<PropertyShow />} />
+                  </Route>
+                  <Route path="/agents">
+                    <Route index element={<AgentList />} />
+                    <Route path="show/:id" element={<AgentShow />} />
+                    <Route path="profile" element={<AgentProfile />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>

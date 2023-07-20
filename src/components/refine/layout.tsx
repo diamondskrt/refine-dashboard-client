@@ -1,45 +1,39 @@
-import React from 'react';
-import { ThemedLayoutContextProvider } from '@refinedev/mui';
-import { ThemedHeaderV2 as DefaultHeader } from './header';
-import { ThemedSiderV2 as DefaultSider } from './sider';
-import Box from '@mui/material/Box';
-import type { RefineThemedLayoutV2Props } from '@refinedev/mui';
+import React from "react";
+import { ThemedLayoutContextProvider } from "@refinedev/mui";
+import Box from "@mui/material/Box";
+import type { RefineThemedLayoutV2Props } from "@refinedev/mui";
+import { Header } from "../Header";
+import { ThemedSiderV2 as Sider } from "./sider";
 
 export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
-  Sider,
-  Header,
-  Title,
   Footer,
   OffLayoutArea,
   children,
   initialSiderCollapsed,
 }) => {
-  const SiderToRender = Sider ?? DefaultSider;
-  const HeaderToRender = Header ?? DefaultHeader;
-
   return (
     <ThemedLayoutContextProvider initialSiderCollapsed={initialSiderCollapsed}>
       <Box display="flex" flexDirection="row">
-        <SiderToRender Title={Title} />
+        <Sider />
         <Box
           sx={[
             {
-              display: 'flex',
-              flexDirection: 'column',
+              display: "flex",
+              flexDirection: "column",
               flex: 1,
-              minHeight: '100vh',
+              minHeight: "100vh",
             },
-            { overflow: 'auto' },
-            { overflow: 'clip' },
+            { overflow: "auto" },
+            { overflow: "clip" },
           ]}
         >
-          <HeaderToRender />
+          <Header />
           <Box
             component="main"
             sx={{
               p: { xs: 1, md: 2, lg: 3 },
               flexGrow: 1,
-              backgroundColor: 'background.default',
+              backgroundColor: "background.default",
             }}
           >
             {children}

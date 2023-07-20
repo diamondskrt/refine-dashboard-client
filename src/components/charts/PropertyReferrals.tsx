@@ -1,21 +1,21 @@
-import { useContext } from 'react';
-import { ColorModeContext } from '@/providers/colormode-context';
-import { Box, LinearProgress, Stack, Typography } from '@mui/material';
-import { cardBorderRadius, cardDarkColors, cardLightColors } from '@/constants';
-import { propertyReferralsInfo } from './constants';
+import { useContext } from "react";
+import { Box, LinearProgress, Stack, Typography } from "@mui/material";
+import { cardBorderRadius, cardDarkColors, cardLightColors } from "@/constants";
+import { ColorModeContext } from "@/providers/colormode-context";
+import { propertyReferralsInfo } from "./constants";
 
 export const PropertyReferrals = () => {
   const { mode } = useContext(ColorModeContext);
 
   return (
     <Stack
-      bgcolor={mode == 'dark' ? cardDarkColors.bg : cardLightColors.bg}
-      color={mode === 'dark' ? cardDarkColors.color : cardLightColors.color}
+      bgcolor={mode == "dark" ? cardDarkColors.bg : cardLightColors.bg}
+      color={mode === "dark" ? cardDarkColors.color : cardLightColors.color}
       borderRadius={cardBorderRadius}
-      p={2}
       justifyContent="space-between"
-      gap={2}
       height="100%"
+      gap={2}
+      p={2}
     >
       <Typography variant="body1" fontWeight={600}>
         PropertyReferrals
@@ -39,7 +39,7 @@ export const PropertyReferrals = () => {
             sx={{
               borderRadius: 1,
               height: 6,
-              '.MuiLinearProgress-bar': { bgcolor: color },
+              ".MuiLinearProgress-bar": { bgcolor: color },
             }}
           />
         </Stack>

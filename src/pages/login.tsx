@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react';
-import { Box, Stack, Typography, Container } from '@mui/material';
-import { useLogin } from '@refinedev/core';
-import { AppIcon } from '@/components';
-import { CredentialResponse } from '@/interfaces/google';
+import { useEffect, useRef } from "react";
+import { Box, Stack, Typography, Container } from "@mui/material";
+import { useLogin } from "@refinedev/core";
+import { AppIcon } from "@/components";
+import { CredentialResponse } from "@/interfaces/google";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
@@ -13,13 +13,13 @@ export const Login: React.FC = () => {
     const divRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-      if (typeof window === 'undefined' || !window.google || !divRef.current) {
+      if (typeof window === "undefined" || !window.google || !divRef.current) {
         return;
       }
 
       try {
         window.google.accounts.id.initialize({
-          ux_mode: 'popup',
+          ux_mode: "popup",
           client_id: GOOGLE_CLIENT_ID,
           callback: async (res: CredentialResponse) => {
             if (res.credential) {
@@ -28,10 +28,10 @@ export const Login: React.FC = () => {
           },
         });
         window.google.accounts.id.renderButton(divRef.current, {
-          theme: 'filled_black',
-          size: 'medium',
-          shape: 'pill',
-          type: 'standard',
+          theme: "filled_black",
+          size: "medium",
+          shape: "pill",
+          type: "standard",
         });
       } catch (error) {
         console.log(error);
@@ -44,13 +44,13 @@ export const Login: React.FC = () => {
   return (
     <Container
       style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <Stack sx={{ textAlign: 'center' }} spacing={2}>
+      <Stack sx={{ textAlign: "center" }} spacing={2}>
         <AppIcon />
         <Typography variant="h5">Dashboard</Typography>
         <Box
