@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { FieldValues } from "react-hook-form";
 import { useForm } from "@refinedev/core";
 import { Form } from "@/components";
 import { FormTypes } from "@/components/common/form/types";
@@ -28,19 +27,13 @@ export const PropertyEdit = () => {
     );
   };
 
-  const onFinishHandler = async (data: FieldValues) => {
-    if (!propertyImg.name) return;
-
-    await onFinish({ ...data, photoUrl: propertyImg.url });
-  };
-
   return (
     <Form
       type={FormTypes.EDIT}
       propertyImg={propertyImg}
       onImageChange={onImageChange}
       formLoading={formLoading}
-      onFinishHandler={onFinishHandler}
+      onFinish={onFinish}
     />
   );
 };
