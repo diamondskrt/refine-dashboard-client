@@ -68,8 +68,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     return 240;
   };
 
-  const authProvider = useActiveAuthProvider();
-  const { data: user } = useGetIdentity<IUser>();
   const t = useTranslate();
   const routerType = useRouterType();
   const Link = useLink();
@@ -81,6 +79,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
   const isExistAuthentication = useIsExistAuthentication();
   const TitleFromContext = useTitle();
+  const authProvider = useActiveAuthProvider();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
   const { mutate: mutateLogout } = useLogout({
     v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
@@ -89,6 +88,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const [open, setOpen] = useState<{ [k: string]: any }>({});
   const { mode, setMode } = useContext(ColorModeContext);
   const navigate = useNavigate();
+  const { data: user } = useGetIdentity<IUser>();
 
   React.useEffect(() => {
     setOpen((previous) => {
