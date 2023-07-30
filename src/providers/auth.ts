@@ -24,40 +24,44 @@ axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
 
 export const authProvider: AuthBindings = {
   login: async ({ credential }: CredentialResponse) => {
-    const profileObj = credential ? parseJwt(credential) : null;
+    const profileObj = credential ? await parseJwt(credential) : null;
 
-    if (profileObj) {
-      try {
-        const res = await axiosInstance.post("/v1/users", {
-          name: profileObj.name,
-          email: profileObj.email,
-          avatar: profileObj.picture,
-        });
-
-        const data = res.data;
-
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            ...profileObj,
-            avatar: profileObj.picture,
-            id: data._id,
-          })
-        );
-      } catch (error) {
-        console.log(error);
-      }
-
-      localStorage.setItem("token", `${credential}`);
-
+    if (!profileObj) {
       return {
-        success: true,
-        redirectTo: "/",
+        success: false,
       };
     }
 
+    try {
+      const res = await axiosInstance.post("/v1/users", {
+        name: profileObj.name,
+        email: profileObj.email,
+        avatar: profileObj.picture,
+      });
+
+      const data = res.data;
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...profileObj,
+          avatar: profileObj.picture,
+          id: data._id,
+        })
+      );
+    } catch (error) {
+      console.log(error);
+
+      return {
+        success: false,
+      };
+    }
+
+    localStorage.setItem("token", `${credential}`);
+
     return {
-      success: false,
+      success: true,
+      redirectTo: "/",
     };
   },
   logout: async () => {
@@ -79,6 +83,7 @@ export const authProvider: AuthBindings = {
   },
   onError: async (error) => {
     console.error(error);
+
     return { error };
   },
   check: async () => {

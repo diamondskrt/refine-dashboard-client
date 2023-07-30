@@ -13,29 +13,24 @@ export const Login: React.FC = () => {
     const divRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-      if (typeof window === "undefined" || !window.google || !divRef.current) {
+      if (typeof window === "undefined" || !window.google || !divRef.current)
         return;
-      }
 
-      try {
-        window.google.accounts.id.initialize({
-          ux_mode: "popup",
-          client_id: GOOGLE_CLIENT_ID,
-          callback: async (res: CredentialResponse) => {
-            if (res.credential) {
-              login(res);
-            }
-          },
-        });
-        window.google.accounts.id.renderButton(divRef.current, {
-          theme: "filled_black",
-          size: "medium",
-          shape: "pill",
-          type: "standard",
-        });
-      } catch (error) {
-        console.log(error);
-      }
+      window.google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: async (res: CredentialResponse) => {
+          if (res.credential) {
+            login(res);
+          }
+        },
+      });
+
+      window.google.accounts.id.renderButton(divRef.current, {
+        theme: "filled_black",
+        size: "medium",
+        shape: "pill",
+        type: "standard",
+      });
     }, []);
 
     return <div ref={divRef} />;
